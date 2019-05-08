@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import mui from '../static/js/mui.js'
+
+Vue.prototype.mui = mui;
 
 Vue.config.productionTip = false
 
