@@ -14,27 +14,10 @@
 			<div class="" style="background-color:#fff">
 				<h5 style="background-color:#efeff4">热门歌单</h5>
 				<ul class="mui-table-view mui-grid-view">
-					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<li class="mui-table-view-cell mui-media mui-col-xs-4" v-for="(item,index) in recommendDiscList" :key="index">
 						<a href="#">
-							<img class="mui-media-object" src="static/images/shuijiao.jpg">
-							<div class="mui-media-body">幸福就是可以一起睡觉</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<a href="#">
-							<img class="mui-media-object" src="static/images/muwu.jpg">
-							<div class="mui-media-body">想要一间这样的木屋，静静的喝咖啡</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<a href="#"><img class="mui-media-object" src="static/images/cbd.jpg">
-							<div class="mui-media-body">Color of SIP CBD</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<a href="#">
-							<img class="mui-media-object" src="static/images/yuantiao.jpg">
-							<div class="mui-media-body">静静看这世界</div>
+							<img class="mui-media-object" :src="item.imgurl">
+							<div class="mui-media-body">{{item.dissname}}</div>
 						</a>
 					</li>
 				</ul>
@@ -49,6 +32,7 @@
 <script>
 	import muiHeader from 'components/common/mui-header.vue';
 	import muiNav from 'components/common/mui-nav.vue';
+	import axios from 'axios'
 
 	import APIKit from '../../api/index.js'
 
@@ -57,6 +41,7 @@
 		data() {
 			return {
 				sliderImages: ['static/images/1.jpg', 'static/images/2.jpg', 'static/images/3.jpg', 'static/images/4.jpg'],
+				recommendDiscList: []
 			}
 		},
 		components: {
@@ -70,17 +55,12 @@
 				interval: 2000 //自动轮播周期，若为0则不自动播放，默认为0；
 			});
 			vm.getSliderList();
-			
-	
-			APIKit.api.getDiscList().then(function(res) {
-				console.log(res);
-			});
-
+			vm.getRecommendDisc();
 		},
 
 		methods: {
 			getSliderList: function() {
-				let vm =this;
+				let vm = this;
 				APIKit.api.getSliderList().then(function(res) {
 					if (res) {
 						let picUrl = [];
@@ -90,23 +70,22 @@
 						vm.sliderImages = picUrl;
 					}
 				});
-
-			}
-
-
-
-
+			},
+			getRecommendDisc: async function() {
+				let vm = this;
+				let result = await axios.get('/recommendDisc');
+				if (result && result.data.data) {
+					vm.recommendDiscList = result.data.data.list
+				}
+			},
 		}
-
-
-
 	}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.mui-content{
-	margin-top:44px;
-}
-
+	.mui-content {
+		margin-top: 44px;
+		margin-bottom: 60px;
+	}
 </style>

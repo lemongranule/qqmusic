@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import mui from '../static/js/mui.js'
+import axios from 'axios'
 
+axios.defaults.baseURL='/api';
+
+import mui from '../static/js/mui.js'
 Vue.prototype.mui = mui;
 
 Vue.config.productionTip = false

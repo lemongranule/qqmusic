@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import find from '@/components/find/find'
 import video from '@/components/video/video'
 import rank from '@/components/rank/rank'
-
+import singerSongs from '@/components/common/singerSongs'
 Vue.use(Router)
 
 export default new Router({
@@ -23,6 +23,12 @@ export default new Router({
 		{
 		  path: '/rank',
 		  component: rank
-		}
+		},
+			{
+		  path: '/singerSongs',
+		  component: singerSongs
+		},
+		
+		
   ]
 })

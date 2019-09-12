@@ -2,14 +2,13 @@
 	<div class="hello">
 		<muiHeader></muiHeader>
 		<div class="mui-content">
-			<div class="mui-slider">
-				<div class="mui-slider-group mui-slider-loop">
-					<!--支持循环，需要重复图片节点-->
-					<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img :src="sliderImages[sliderImages.length-1]" /></a></div>
-					<div class="mui-slider-item" v-for="(item,index) in sliderImages" :key="index"><a href="#"><img :src="item" /></a></div>
-					<!--支持循环，需要重复图片节点-->
-					<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img :src="sliderImages[0]" /></a></div>
-				</div>
+			
+			
+			
+			<div>
+				<audio controls="controls">
+					<source :src="songUrl" />
+				</audio>
 			</div>
 
 		</div>
